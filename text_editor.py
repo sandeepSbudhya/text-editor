@@ -60,27 +60,25 @@ def autoCloseBracket():
     return 0
 
 def bracket_parity_check(event):
-    if event.char:      
-    
-        open_list = ["[","{","("]
-        close_list = ["]","}",")"]
-        stack = []
-        textstring=editor.get("1.0","end")
-        flag = False
-        for i in textstring:
-            if i in open_list:
-                stack.append(i)
-            elif i in close_list:
-                if len(stack) > 0:
-                    stack.pop()
-                else:
-                    flag = True
-        if flag == True or len(stack)>0:
-            print("Unbalanced")
-            status_bar.config(text='Mismatched Brackets         ')
-        else:
-            print("Balanced")
-            status_bar.config(text='Ready           ')
+    open_list = ["[","{","("]
+    close_list = ["]","}",")"]
+    stack = []
+    textstring=editor.get("1.0","end")
+    flag = False
+    for i in textstring:
+        if i in open_list:
+            stack.append(i)
+        elif i in close_list:
+            if len(stack) > 0:
+                stack.pop()
+            else:
+                flag = True
+    if flag == True or len(stack)>0:
+        print("Unbalanced")
+        status_bar.config(text='Mismatched Brackets         ')
+    else:
+        print("Balanced")
+        status_bar.config(text='Ready           ')
     return 0
 menu_bar = Menu(compiler)
 
